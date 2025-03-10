@@ -1,0 +1,20 @@
+# Count of occurrence of a substring in a string
+main_string = "Hello, World! Hello, Python! Hello, World!"
+substring = "Hello"
+
+# Using count() method
+occurrences = main_string.count(substring)
+
+print(f"The substring '{substring}' occurs {occurrences} times in the main string.")
+# Output: The substring 'Hello' occurs 3 times in the main string.
+
+# Count of occurrence of a string in a list of strings
+string_list = ["apple", "banana", "orange", "banana", "apple", "kiwi"]
+target_string = "banana"
+
+# Using count() method for each string in the list
+occurrences_in_list = sum(1 for s in string_list if s == target_string)
+
+print(f"The string '{target_string}' occurs {occurrences_in_list} times in the list.")
+# Output: The string 'banana' occurs 2 times in the list.
+
