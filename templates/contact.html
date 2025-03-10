@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: whitesmoke; 
+            margin: 0;
+            padding: 0;
+            
+        }
+        .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #feeeff; /* Adjust the alpha value for the desired opacity */
+    max-width: 600px;
+    margin:0 auto;
+    margin-top: 100px;
+    filter: opacity(50px);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.2); /* Adjust shadow properties as needed */
+    display: flex; /* Change display to flex */
+    flex-direction: column; /* Arrange children elements in a column */
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left; /* Align form elements to the left */
+    display: flex; /* Change display to flex */
+    flex-direction: column; /* Arrange children elements in a column */
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px; /* Add margin below labels for better spacing */
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%; /* Set width to 100% */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+
+textarea {
+    height: 150px;
+}
+
+.btn-submit {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%; /* Set width to 100% */
+}
+
+.alert {
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.success {
+    background-color: #4CAF50;
+}
+
+
+        .btn-submit {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+
+        .alert {
+            padding: 10px;
+            background-color: #f44336;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .success {
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contact Us</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form method="POST" action="/contact">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label><br>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn-submit">Send</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

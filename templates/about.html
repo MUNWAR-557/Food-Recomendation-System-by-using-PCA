@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Team</title>
+<style>
+    body {
+        background-image: url("\\static\\about.jpg");
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items:center;
+        height: 125vh;
+    }
+    @keyframes slideInAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header {
+    background-color:#333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px; /* Rounded corners */
+    animation: slideInAnimation 1s forwards; /* Slide in over 1 second */
+}
+    .team-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 800px;
+        margin-top: 20px;
+    }
+    .team-member {
+        border: 1px solid #ccc;
+        margin: 10px;
+        padding: 25px;
+        border-radius: 5px;
+        overflow: hidden;
+        background: rgba(249, 249, 249, 0.9);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+    .team-member:hover {
+        transform: scale(1.05);
+}
+.team-member:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    background-color: rgb(155, 199, 230);
+}
+    .team-member h2 {
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    .team-member p {
+        margin-bottom: 10px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+}
+.team-member:hover p {
+    opacity: 1;
+}
+
+</style>
+</head>
+<body >
+    <header>
+        <h1>Our Team</h1>
+    </header>
+    <div class="team-container">
+        <div class="team-member">
+            <i class="fa-brands fa-html5" style="color: #34a6fe;;"></i>
+            <h2>SYED MUNWAR ALI</h2>
+            <p>Team lead</p>
+            <p>Backend, frontend and team management </p>
+        </div>
+        <div class="team-member">
+            <h2>VYUHITHA JETTI</h2>
+            <p>Member</p>
+            <p>Frontend and Documentation</p>
+        </div>
+        <div class="team-member">
+            <h2>PERUMALLA VAISHNAVI</h2>
+            <p>Member</p>
+            <p>Documentation and tools collected</p>
+        </div>
+        <div class="team-member">
+            <h2>THOTA MAHESH RAJU</h2>
+            <p>Member</p>
+            <p>Information gathering and other resource collector</p>
+        </div>
+    </div>
+</body>
+</html>

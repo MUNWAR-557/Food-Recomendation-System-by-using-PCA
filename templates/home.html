@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head class="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOOD RECOMENDATION System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+  
+    <script>
+        function showIt(item){
+        var items = document.getElementsByClassName('items')
+        item = document.getElementById(item)
+        for(let i=0; i< items.length; i++)
+        {
+            items[i].style.display = 'none'
+        }
+        item.style.display = 'block'
+    }
+     
+    </script>
+</head>
+
+<body >
+    <div class="grid-container">
+        <div class="nav">
+    <nav>
+        <ul>
+            <li class="active" >
+                <a onclick="showIt('homes')" href="#" >
+                    <i class="fa fa-home" aria-hidden></i>
+                    <span class="title">Home</span>
+                </a>
+            </li>
+            <li >
+                <a onclick="showIt('explore')" href="#" >
+                    <i class="fa fa-filter" aria-hidden></i>
+                    <span class="title">Explore</span>
+                </a>
+            </li>
+            <li >
+                <a onclick="showIt('map')" href="#">
+                    <i class="fa fa-map-signs" aria-hidden></i>
+                    <span class="title">Map</span>
+                </a>
+            </li>
+            <li >
+                <a onclick="showIt('contact')" href="#">
+                    <i class="fa fa-comment" aria-hidden></i>
+                    <span class="title" style="font-size: 15px;font-weight: bold;">Contact us</span>
+                </a>
+            </li>
+            <li >
+                <a onclick="showIt('about')" href="#">
+                    <i class="fa fa-info-circle" aria-hidden></i>
+                    <span class="title">About</span>
+                </a>
+            </li>
+            <div class="selected-option-bg"></div>
+        </ul>
+    </nav>
+    </div>
+    <br><br><br>    
+
+    <div class="content">
+        <div class="sec">
+            <iframe class="items" src="{{url_for('homes')}}" id="homes" style="width: 100%; height: 100%; border: none;"></iframe>
+            <iframe class="items" src="{{url_for('explore')}}" id="explore" style="width: 100%; height: 100%; border: none;"></iframe>
+            <iframe class="items" src="https://maps.google.com/maps?q=india&t=&z=10&ie=UTF8&iwloc=&output=embed" id="map" style="width: 100%; height: 100%; border: none;"></iframe>
+            <iframe class="items" src="{{url_for('contact')}}" id="contact" style="width: 100%; height: 100%; border: none;"></iframe>
+            <iframe class="items" src="{{url_for('about')}}" id="about" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script>
+    const list = document.querySelectorAll('li');
+  
+
+function activeLink() {
+    list.forEach((item) => item.classList.remove('active'));
+    this.classList.add('active')
+}
+
+list.forEach((item) => item.addEventListener('click', activeLink));
+</script>
+</html>
+<style>
+    
+    *{
+    margin: 1;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    align-items: top;
+}
+    .grid-container {
+    display: grid;
+    grid-template-rows: auto 1fr; 
+    min-height: 110vh;
+    background: var(--bgc);
+    width: 99%;
+    margin-top: 10px;
+    max-width: 1000vw;
+}
+
+.content {
+    background-color:white;
+    padding: 0px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    max-width: 1000vw;
+    margin-bottom: 10px;
+}
+
+.form-wrapper {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 99%;
+  margin-top: 10px;
+  
+ 
+}
+.sec {
+  
+  padding: 0px; 
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 1000pw; 
+  margin: 0 auto; 
+  height: 100vh; 
+  overflow: auto;
+  background-color:white;
+  text-align: center;
+}
+
+
+
+.items{
+    display: none;
+}
+
+#home{
+    display: block;
+}
+
+
+
+:root{
+    --bgc:#1d1a39;
+}
+
+body{
+    margin-top: 50px;
+    
+    display: flex;
+    justify-content: center;
+    align-items:top;
+    height: 100vb;
+    background: var(--bgc);
+}
+
+nav{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border-radius: 15px;
+    position: relative;
+    width: 500px;
+    height: 80px;
+    margin-bottom: -30px;
+}
+
+.nav{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+   
+}
+
+nav ul{
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+}
+
+nav ul li{
+    position: relative;
+    list-style: none;
+    width: 90px;
+    z-index: 1;
+}
+
+ul li a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+    width: 100%;
+}
+
+.fa{
+    position: relative;
+    display: block;
+    line-height: 80px;
+    font-size: 30px;
+    transition: 0.4s;
+    color: black;
+    text-align: center;
+}
+
+ul li.active a .fa{
+    transform: translateY(-40px);
+    color:white;
+    
+}
+
+ul li.active a .title{
+    opacity: 1;
+    transform: translateY(13px);
+}
+
+.title{
+    position: absolute;
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+    opacity: 0;
+    transition: 0.4s;
+    transform: translateY(10px);
+}
+
+.selected-option-bg{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    top: -50%;
+    border-radius: 50%;
+    background: linear-gradient(30deg, #e82ac5, #7d2ae8);
+    transition: 0.4s;
+    border: 5px solid var(--bgc);
+}
+
+.selected-option-bg::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -18px;
+    width: 15px;
+    height: 19px;
+    background-color: white;
+    border-top-right-radius: 20px;
+    box-shadow: 0px -8px 0 0 var(--bgc);
+}
+
+.selected-option-bg::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -18px;
+    width: 15px;
+    height: 19px;
+    background-color: white;
+    border-top-left-radius: 20px;
+    box-shadow: 0px -8px 0 0 var(--bgc);
+}
+
+ul li:nth-child(1).active ~ .selected-option-bg{
+    transform: translateX(calc(80px * 0));
+}
+
+ul li:nth-child(2).active ~ .selected-option-bg{
+    transform: translateX(calc(80px * 1));
+}
+
+ul li:nth-child(3).active ~ .selected-option-bg{
+    transform: translateX(calc(80px * 2));
+}
+
+ul li:nth-child(4).active ~ .selected-option-bg{
+    transform: translateX(calc(80px * 3));
+}
+
+ul li:nth-child(5).active ~ .selected-option-bg{
+    transform: translateX(calc(80px * 4));
+}
+</style>

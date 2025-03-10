@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Suggestions</title>
+</head>
+<style>
+  body
+{
+    margin: 0;
+    padding: 0;
+    overflow: scroll;
+    font-family: Arial, sans-serif;
+  }
+  #container {
+    position: relative;
+    width: 700px;
+    height: 500px;
+    overflow: hidden;
+  }
+  #image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease-in-out;
+  }
+  .hovered {
+    transform: translate(15px, 20px); /* Adjust the translation values as needed */
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .fade-slide-text {
+    color: chocolate;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  }
+  .fade-slide-text.fade-in {
+    opacity: 20;
+    transform: translateY(0);
+  }
+  
+  /* Hero Section Styles */
+  .hero {
+    background-image: url("\\static\\bg.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+  
+  .hero-content {
+    text-align: left;
+    color:black;
+  }
+  
+  .hero h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  .textbox {
+    position: absolute;
+    font-size: 25px;
+    top: 60px; /* Adjust vertical position */
+    padding:10px;
+    background-color: rgb(223, 218, 214); /* Semi-transparent background */
+    border-radius: 5px;
+  }
+  #icons
+  {
+     font-size: 35px;
+     font-family: Calibri;
+     font-style: italic;
+     text-align: center;
+  }
+  .icon-container {
+        display: flex; /* Use flexbox for layout */
+        justify-content: space-between; /* Distribute items evenly along the main axis */
+        max-width: 900px; /* Set a maximum width for the container */
+        margin: 100px auto; /* Center the container horizontally */
+    }
+    .icon {
+        display: flex; /* Use flexbox for icon and text */
+        flex-direction: column; /* Stack icon and text vertically */
+        align-items: center; /* Center items horizontally */
+        box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+        padding: 10px; /* Add padding for spacing */
+        border-radius: 8px; 
+        transition: transform 0.3s ease; /* Add transition for smooth effect */
+    }
+    .icon:hover {
+        transform: scale(1.1); /* Zoom effect on hover */
+    }
+    .icon img {
+        width: 100px; /* Set width of each icon */
+        height: 100px; /* Set height of each icon */
+        margin-bottom: 10px; /* Add some spacing between icon and text */
+    }
+  /* Food Items Section Styles */
+  .food-items {
+    text-align: center;
+    margin-bottom: 100px;
+    margin-top: 100px;
+    font-size: 25px;
+  }
+  
+  .food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Quotes Section Styles */
+  .quotes {
+    text-align: center;
+    font-size: 25px;
+  }
+  .quote-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .quote {
+    font-style: italic;
+    margin-bottom: 20px;
+  } 
+  </style>
+<body>
+  <div class="container">
+    <section class="hero">
+      <div class="hero-content">
+        <h2>Discover Amazing Restaurants Near You</h2>
+        <p>Explore a world of delicious cuisines</p>
+        </div>
+        <div class="textbox">
+          <h1>Order Takeaway Online</h1>
+        </div>
+    </section>
+    <section class="food-items">
+      <h1 id="icons">Enjoy Food In 4 Simple Steps</h1>
+      <div class="icon-container">
+        <div class="icon">
+            <img src="\static\location.png" alt="Icon 1">
+            locate
+        </div>
+        <div class="icon">
+            <img src="\static\res.jpg" alt="Icon 2">
+            select
+        </div>
+        <div class="icon">
+            <img src="\static\rupee.png" alt="Icon 3">
+            pay
+        </div>
+        <div class="icon">
+            <img src="\static\rate.png" alt="Icon 4">
+            rate
+        </div>
+    </div>
+      <h2>Featured Food</h2>
+      <div class="food-grid">
+        <h1 id="fadeSlideText" class="fade-slide-text">Spicy and delicious<br><br>Desi Restaurants Of The City</h1>
+    <script>
+  const fadeSlideText = document.getElementById('fadeSlideText');
+
+  // Function to trigger the fade-in and slide-in effect after delay
+  function fadeInAndSlide() {
+    fadeSlideText.classList.add('fade-in');
+  }
+  // Delay the animation by 2 seconds (adjust as needed)
+  setTimeout(fadeInAndSlide, 2000);
+</script>
+        <div id="container">
+            <img id="image" src="\static\ch.jpg" alt="Animated Image" width="600" height="400">
+            </div> 
+      </div>
+    </section>
+    <section class="quotes">
+      <div class="quote-container">
+        <p class="quote">"Food is symbolic of love when words are inadequate."</p>
+        <p class="quote">"One cannot think well, love well, sleep well, if one has not dined well."</p>
+        <!-- Add more quotes here -->
+      </div>
+    </section>
+  </div>
+  
+  <script>
+    const image = document.getElementById('image');
+  
+    // Function to handle mouse enter event
+    function handleMouseEnter() {
+      image.classList.add('hovered'); // Add the 'hovered' class for animation
+    }
+  
+    // Function to handle mouse leave event
+    function handleMouseLeave() {
+      image.classList.remove('hovered'); // Remove the 'hovered' class
+    }
+  
+    // Attach mouse enter and leave event listeners to the image
+    image.addEventListener('mouseenter', handleMouseEnter);
+    image.addEventListener('mouseleave', handleMouseLeave);
+  </script>
+  
+</body>
+</html>
+

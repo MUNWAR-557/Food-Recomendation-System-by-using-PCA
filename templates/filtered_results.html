@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Filtered Results</title>
+    <style>
+            .fade-in {
+            opacity: 0;
+            animation: fadeInAnimation 1s forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            
+            from{
+                from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eaeaea;
+
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden; /* Hide border-radius overflow */
+            animation: fadeInUp 1s ease;
+            background-color: #ffffff;
+            height: 100%;
+            
+        }
+
+        .header-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .table-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+       
+    
+        }
+        /* Use a lighter background color for the PDF version */
+        table.pdf-version {
+            font-size: 16px; /* Adjust font size for better visibility in PDF */
+            border-collapse: collapse;
+            width: 98%;
+            background-color: #fff; /* Use a lighter background color */
+        }
+        /* Apply similar styles for table cells */
+        table.pdf-version th,
+        table.pdf-version td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            background-color:white; /* Use a slightly darker background for cells */
+            color: #333; /* Adjust text color for better contrast */
+        }
+        table.pdf-version th {
+            background-color: #f39f5a;
+            color: white;
+        }
+        
+    button{
+    background-color: aliceblue;
+    border-color: #384358;
+    border-style: solid;
+    border-width: 1px;
+    color:#384358;
+    height: 20px;
+    width: 50x;
+    border-radius: 3px;
+    font-size: 15px;
+    cursor:pointer;
+    margin-right: 30px;
+    transition: background-color 0.7s;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 24px;
+}
+button:hover{
+    color: aliceblue;
+    background-color: #06193d;
+    
+}
+.pad{
+    padding-bottom: 20px;
+}
+
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+</head>
+<body >
+    <h1 style="color: red;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-stretch:wider;padding-right: 30px ;"><b>Filtered Results</b></h1>
+    
+   
+<div class="pad">
+    <div class="table-container" class="download_but"><center>
+        <button onclick="downloadAsPDF()">Download Results as PDF</button>
+    </center>
+    </div></div>
+
+    <div class="table-container fade-in">
+        {% if filtered_results %}
+            <table class="pdf-version" border="1">
+                <thead>
+                    <tr>
+                        <th>Restaurant Name</th>
+                        <th>Rating</th>
+                        <th>City</th>
+                        <th>Cost</th>
+                        <th>Cuisine</th>
+                        <th>Address</th>
+                        <th>Links to order your Food</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in filtered_results %}
+                        <tr>
+                            <td>{{ result['name'] }}</td>
+                            <td>{{ result['rating'] }}</td>
+                            <td>{{ result['city'] }}</td>
+                            <td>{{ result['cost'] }}</td>
+                            <td>{{ result['cuisine'] }}</td>
+                            <td>{{ result['address'] }}</td>
+                            <td><a href="{{ result['link']}}" target="_blank" style="text-decoration: none;color:rgb(21, 1, 79);">{{ result['link']}}</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No results found for the selected criteria.</p>
+        {% endif %}
+    </div>
+    
+    <script>
+        function downloadAsPDF() {
+            const table = document.querySelector('.pdf-version');
+            if (table) {
+                html2pdf().from(table).set({
+                    margin: 10,
+                    filename: 'filtered_results.pdf',
+                    image: { type: 'jpeg', quality: 0.99 },
+                    html2canvas: { scale: 1 },
+                    jsPDF: { unit: 'mm', format:'a3', orientation:'landscape' }
+                }).save();
+            } else {
+                alert('No table found.');
+            }
+        }
+    </script>
+</body>
+</html>
